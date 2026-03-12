@@ -3,7 +3,7 @@ import { Task } from "./types";
 import Board from "./components/Board";
 import SettingsModal from "./components/SettingsModal";
 import PlanModal from "./components/PlanModal";
-import { getToken, updateTaskStatus, deleteTask as deleteTaskGH } from "./utils/github";
+import { getToken } from "./utils/github";
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
   const handleDrop = useCallback(
     async (taskId: string, newStatus: string) => {
-      // Optimistic update
+      // Update local state only
       setTasks((prev) =>
         prev.map((t) =>
           t.id === taskId
@@ -52,18 +52,6 @@ const App: React.FC = () => {
             : t
         )
       );
-
-      if (getToken()) {
-        try {
-          await updateTaskStatus(taskId, newStatus);
-        } catch (err) {
-          console.error(
-            "Note: Drag succeeded locally but failed to sync to GitHub:",
-            err
-          );
-          // Do NOT revert - user has successfully moved task locally
-        }
-      }
 
       // Show plan modal if dropping to in_progress
       if (newStatus === "in_progress") {
@@ -74,27 +62,13 @@ const App: React.FC = () => {
     [tasks]
   );
 
-  const handleDeleteTask = useCallback(async (taskId: string) => {
+  const handleDeleteTask = useCallback((taskId: string) => {
     if (!window.confirm("Delete this task?")) {
       return;
     }
 
-    // Always remove from local state
+    // Remove from local state only
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
-
-    // Try to sync to GitHub only if token is set (non-blocking)
-    if (getToken()) {
-      try {
-        await deleteTaskGH(taskId);
-      } catch (err) {
-        console.error(
-          "Note: Delete succeeded locally but failed to sync to GitHub:",
-          err
-        );
-        // Do NOT revert - user has successfully deleted locally
-        // Token may be invalid, but deletion is complete
-      }
-    }
   }, []);
 
   if (loading) {
