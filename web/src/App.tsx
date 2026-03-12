@@ -7,10 +7,10 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch tasks from API
+  // Fetch tasks from static JSON
   const fetchTasks = useCallback(async () => {
     try {
-      const response = await fetch("/api/tasks");
+      const response = await fetch("/mission-control/tasks.json");
       if (!response.ok) {
         throw new Error(`Failed to fetch tasks: ${response.statusText}`);
       }
@@ -36,54 +36,13 @@ const App: React.FC = () => {
     return () => clearInterval(interval);
   }, [fetchTasks]);
 
-  // Handle task deletion
-  const handleDeleteTask = async (taskId: string) => {
-    try {
-      const response = await fetch(`/api/tasks/${taskId}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to delete task: ${response.statusText}`);
-      }
-
-      // Remove from local state
-      setTasks(tasks.filter((t) => t.id !== taskId));
-    } catch (err) {
-      console.error("Error deleting task:", err);
-      alert(`Failed to delete task: ${err instanceof Error ? err.message : "Unknown error"}`);
-    }
+  // Static version - no delete/drag functionality
+  const handleDeleteTask = () => {
+    alert("Edit board.md and push to GitHub to update the kanban board");
   };
 
-  // Handle drag and drop
-  const handleDrop = async (taskId: string, newStatus: string) => {
-    // Optimistic update
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, status: newStatus as any } : task
-    );
-    const previousTasks = tasks;
-    setTasks(updatedTasks);
-
-    // Send to server
-    try {
-      const response = await fetch(`/api/tasks/${taskId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to update task: ${response.statusText}`);
-      }
-
-      // Fetch fresh data to ensure consistency
-      await fetchTasks();
-    } catch (err) {
-      // Revert on error
-      setTasks(previousTasks);
-      console.error("Error updating task:", err);
-      alert(`Failed to move task: ${err instanceof Error ? err.message : "Unknown error"}`);
-    }
+  const handleDrop = () => {
+    alert("Edit board.md and push to GitHub to update the kanban board");
   };
 
   if (loading) {

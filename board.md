@@ -8,6 +8,23 @@
 
 ## 🔴 Backlog (Priority Queue)
 ---
+id: task-mmmq8g8z
+title: Build landing page for website
+description: 
+status: backlog
+priority: high
+assigned_to: one
+due_date: 2026-03-15
+created_at: 2026-03-12 00:25
+completed_at: 
+tags: [website]
+estimate_hours: 
+actual_hours: 
+---
+
+
+
+---
 id: task-auraflow-001
 title: Explore AuraFlow — Astrological Decision Timing App
 description: Real-time astrological transits + meditation guidance for optimal decision-making
