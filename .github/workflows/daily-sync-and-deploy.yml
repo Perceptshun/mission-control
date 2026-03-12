@@ -3,6 +3,8 @@ name: Build & Deploy
 on:
   push:
     branches: [ main ]
+  schedule:
+    - cron: '5 13 * * *'  # Daily at 8:05am ET (13:05 UTC)
   workflow_dispatch:
 
 permissions:
@@ -11,17 +13,33 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
-    - run: cd web && bun install
-    - run: cd web && bun run build
+    - name: Sync ideas to mission control board
+      run: bun run scripts/sync-ideas-to-board.ts
+    - name: Commit and push if changes made
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add board.md
+        git diff-index --quiet HEAD || git commit -m "chore: sync daily ideas to board"
+        git push origin main
+
+  build:
+    needs: sync
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+    - run: bun install
+    - run: bun run build
     - uses: actions/upload-artifact@v4
       with:
         name: dist
-        path: web/dist/
+        path: dist/
 
   deploy:
     needs: build
