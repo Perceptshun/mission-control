@@ -60,23 +60,13 @@ export async function fetchBoardMd(): Promise<{
   });
 
   if (!metaResponse.ok) {
-    const errorText = await metaResponse.text();
-    console.error("GitHub API error:", errorText);
     throw new Error(
       `GitHub API error ${metaResponse.status}: ${metaResponse.statusText}. Check that your token is valid.`
     );
   }
 
-  try {
-    const meta = await metaResponse.json();
-    return { content, sha: meta.sha };
-  } catch (e) {
-    const errorText = await metaResponse.text();
-    console.error("Failed to parse GitHub response:", errorText);
-    throw new Error(
-      `Invalid GitHub response. Check your token validity. Error: ${e}`
-    );
-  }
+  const meta = await metaResponse.json();
+  return { content, sha: meta.sha };
 }
 
 export async function saveBoardMd(
