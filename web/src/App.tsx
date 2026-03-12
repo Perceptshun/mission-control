@@ -10,7 +10,7 @@ const App: React.FC = () => {
   // Fetch tasks from static JSON
   const fetchTasks = useCallback(async () => {
     try {
-      const response = await fetch("/mission-control/tasks.json");
+      const response = await fetch("./tasks.json");
       if (!response.ok) {
         throw new Error(`Failed to fetch tasks: ${response.statusText}`);
       }

@@ -1,7 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { execSync } from "child_process";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
@@ -12,7 +15,8 @@ export default defineConfig({
       async buildStart() {
         console.log("📝 Building tasks.json from board.md...");
         try {
-          execSync(`bun run ${resolve(import.meta.dir, "scripts/build-tasks-json.ts")}`, {
+          const scriptPath = resolve(__dirname, "scripts/build-tasks-json.ts");
+          execSync(`bun run "${scriptPath}"`, {
             stdio: "inherit",
           });
         } catch (error) {
