@@ -11,31 +11,28 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+    - run: cd web && bun install
+    - run: cd web && bun run build
+    - uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: web/dist/
 
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1
-
-    - name: Install Dependencies
-      run: cd web && bun install
-
-    - name: Build Static Site
-      run: cd web && bun run build
-
-    - name: Configure Git
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-
-    - name: Deploy to gh-pages
-      run: |
-        git checkout --orphan gh-pages
-        git rm -rf .
-        cp -r web/dist/* .
-        git add .
-        git commit -m "Deploy: Update site [skip ci]"
-        git push -f origin gh-pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+    - uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist/
