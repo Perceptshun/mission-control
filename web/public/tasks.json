@@ -1,1 +1,150 @@
-{"tasks":[]}
+{
+  "tasks": [
+    {
+      "id": "task-mmmq8g8z",
+      "title": "Build landing page for website",
+      "description": "",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-15",
+      "created_at": "2026-03-12 00:25",
+      "completed_at": "",
+      "tags": [
+        "website"
+      ],
+      "estimate_hours": "",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-auraflow-001",
+      "title": "Explore AuraFlow — Astrological Decision Timing App",
+      "description": "Real-time astrological transits + meditation guidance for optimal decision-making",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 08:00",
+      "completed_at": "",
+      "tags": [
+        "app-idea",
+        "frequency-raising",
+        "astrology",
+        "freemium"
+      ],
+      "estimate_hours": "",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-neuralnest-001",
+      "title": "Explore NeuralNest — AI Relationship Architecture CRM",
+      "description": "Intelligent CRM + relationship mapping + conversation intelligence for warm networks",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 08:00",
+      "completed_at": "",
+      "tags": [
+        "app-idea",
+        "network-leverage",
+        "ai-crm",
+        "freemium"
+      ],
+      "estimate_hours": "",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-vaultmind-001",
+      "title": "Explore VaultMind — Private AI for Regulated Professionals",
+      "description": "On-premise HIPAA/SOC2 compliant AI for healthcare, legal, and financial professionals",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 12:00",
+      "completed_at": "",
+      "tags": [
+        "app-idea",
+        "enterprise",
+        "ai-privacy",
+        "hipaa-compliant"
+      ],
+      "estimate_hours": "",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-taskproxy-001",
+      "title": "Build TaskProxy — AI that Actually Executes",
+      "description": "AI-powered task execution engine that autonomously completes actions (emails, scheduling, tracking)",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 12:00",
+      "completed_at": "",
+      "tags": [
+        "coding-idea",
+        "automation",
+        "ai-execution",
+        "revenue"
+      ],
+      "estimate_hours": "35",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-001",
+      "title": "Build DealFlow App MVP (Coding Idea #1)",
+      "description": "React Native app for real estate pipeline intelligence + close probability prediction",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-15",
+      "created_at": "2026-03-10 08:30",
+      "completed_at": "",
+      "tags": [
+        "coding",
+        "revenue",
+        "app-idea"
+      ],
+      "estimate_hours": "40",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-002",
+      "title": "Build LeadScorer CLI Tool (Coding Idea #2)",
+      "description": "Predictive lead qualification engine that auto-scores incoming leads",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-17",
+      "created_at": "2026-03-10 08:35",
+      "completed_at": "",
+      "tags": [
+        "coding",
+        "revenue",
+        "lead-gen"
+      ],
+      "estimate_hours": "45",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-complete-001",
+      "title": "Build Daily Routine System (8am/10pm Greetings)",
+      "description": "Astrological mantra + app ideas + coding ideas (morning), spiritual lessons (evening)",
+      "status": "done",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-09",
+      "created_at": "2026-03-08 22:00",
+      "completed_at": "2026-03-09 18:00",
+      "tags": [
+        "system",
+        "wellness",
+        "spiritual"
+      ],
+      "estimate_hours": "20",
+      "actual_hours": "18"
+    }
+  ]
+}
