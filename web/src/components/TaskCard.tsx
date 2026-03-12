@@ -20,11 +20,11 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDelete }) => {
     opacity: isDragging ? 0.5 : 1,
   };
 
-  const handleDelete = (e: React.MouseEvent) => {
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     e.stopPropagation();
-    if (window.confirm(`Delete task: ${task.title}?`)) {
-      onDelete?.(task.id);
-    }
+    console.log("Delete button clicked for task:", task.id);
+    onDelete?.(task.id);
   };
 
   const assigneeColor = task.assigned_to === "one" ? "#b362f5" : "#00d9ff";
@@ -77,6 +77,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDelete }) => {
           {task.title}
         </div>
         <button
+          type="button"
           onClick={handleDelete}
           style={{
             display: "inline-flex",
@@ -92,6 +93,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDelete }) => {
             fontSize: "14px",
             opacity: 0.6,
             transition: "opacity 0.2s",
+            pointerEvents: "auto",
+            zIndex: 10,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.opacity = "1";
