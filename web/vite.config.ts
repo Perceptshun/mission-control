@@ -35,6 +35,7 @@ export default defineConfig({
       },
     },
   },
+  base: '/mission-control/',
   build: {
     outDir: "dist",
     emptyOutDir: true,
