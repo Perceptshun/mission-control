@@ -37,7 +37,7 @@ export default defineConfig({
   },
   base: '/mission-control/',
   build: {
-    outDir: "dist",
+    outDir: "../docs",
     emptyOutDir: true,
   },
 });
