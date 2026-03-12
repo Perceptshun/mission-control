@@ -10,6 +10,7 @@ interface Task {
   id: string;
   title: string;
   description: string;
+  extended_description?: string;
   status: "backlog" | "in_progress" | "in_review" | "done";
   priority: string;
   assigned_to: string;
@@ -26,35 +27,66 @@ const OUTPUT_PATH = resolve(import.meta.dir, "../public/tasks.json");
 
 function parseBoard(content: string): Task[] {
   const tasks: Task[] = [];
-  const taskBlocks = content.split(/\n---\n/).slice(1); // Skip header
 
-  for (const block of taskBlocks) {
+  // Split content into blocks (separated by ---)
+  const allBlocks = content.split(/\n---\n/);
+
+  let i = 1; // Skip header block
+  while (i < allBlocks.length) {
+    const block = allBlocks[i];
     const lines = block.split("\n");
     const task: any = {};
+    let isYamlBlock = false;
 
+    // Check if this block contains YAML (starts with id:)
     for (const line of lines) {
-      const colonIdx = line.indexOf(":");
-      if (colonIdx === -1) continue;
-
-      const key = line.substring(0, colonIdx).trim();
-      let value = line.substring(colonIdx + 1).trim();
-
-      if (key === "tags") {
-        const match = value.match(/\[(.*?)\]/);
-        task.tags = match
-          ? match[1]
-              .split(",")
-              .map((t: string) => t.trim())
-              .filter((t: string) => t)
-          : [];
-      } else {
-        task[key] = value;
+      if (line.trim().startsWith("id:")) {
+        isYamlBlock = true;
+        break;
       }
     }
 
-    if (task.id && task.title) {
-      tasks.push(task as Task);
+    if (isYamlBlock) {
+      // Parse YAML fields
+      for (const line of lines) {
+        const colonIdx = line.indexOf(":");
+        if (colonIdx === -1) continue;
+
+        const key = line.substring(0, colonIdx).trim();
+        let value = line.substring(colonIdx + 1).trim();
+
+        if (key === "tags") {
+          const match = value.match(/\[(.*?)\]/);
+          task.tags = match
+            ? match[1]
+                .split(",")
+                .map((t: string) => t.trim())
+                .filter((t: string) => t)
+            : [];
+        } else {
+          task[key] = value;
+        }
+      }
+
+      // Check if next block is extended description (content block, not YAML)
+      if (i + 1 < allBlocks.length) {
+        const nextBlock = allBlocks[i + 1];
+        const nextIsYaml = nextBlock.split("\n").some((line) =>
+          line.trim().startsWith("id:")
+        );
+
+        if (!nextIsYaml && nextBlock.trim().length > 0) {
+          task.extended_description = nextBlock.trim();
+          i++; // Skip the extended description block
+        }
+      }
+
+      if (task.id && task.title) {
+        tasks.push(task as Task);
+      }
     }
+
+    i++;
   }
 
   return tasks;
