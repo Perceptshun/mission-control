@@ -73,24 +73,22 @@ const App: React.FC = () => {
   );
 
   const handleDeleteTask = useCallback(async (taskId: string) => {
-    if (!getToken()) {
-      alert("Add GitHub token in ⚙️ Settings to enable delete");
-      return;
-    }
-
     if (!window.confirm("Delete this task?")) {
       return;
     }
 
-    // Optimistic update
+    // Always remove from local state
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
 
-    try {
-      await deleteTaskGH(taskId);
-    } catch (err) {
-      console.error("Failed to delete task:", err);
-      // Revert on failure
-      fetchTasks();
+    // Sync to GitHub only if token is set
+    if (getToken()) {
+      try {
+        await deleteTaskGH(taskId);
+      } catch (err) {
+        console.error("Failed to delete task from GitHub:", err);
+        // Revert on failure
+        fetchTasks();
+      }
     }
   }, []);
 
