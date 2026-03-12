@@ -7,9 +7,21 @@ on:
   # Also allow manual trigger
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - uses: actions/checkout@v4
@@ -41,10 +53,15 @@ jobs:
       run: cd web && bun install
 
     - name: Build Static Site
-      run: cd web && bun run build && cp -r dist ../docs
+      run: cd web && bun run build
 
-    - name: Commit Docs Update
-      run: |
-        git add docs/
-        git commit -m "Automated build: Update docs/ from web/dist [skip ci]" || echo "No changes to commit"
-        git push origin main
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: 'web/dist'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
