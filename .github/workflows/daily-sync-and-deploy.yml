@@ -1,32 +1,21 @@
-name: Daily Sync Ideas & Deploy
+name: Build & Deploy
 
 on:
-  schedule:
-    # Run daily at 8:05 AM UTC (adjust timezone as needed)
-    - cron: '5 8 * * *'
-  # Also allow manual trigger
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  sync-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Setup Bun
       uses: oven-sh/setup-bun@v1
@@ -37,27 +26,16 @@ jobs:
     - name: Build Static Site
       run: cd web && bun run build
 
-    - name: Deploy to GitHub Pages (gh-pages branch)
+    - name: Configure Git
       run: |
-        # Fetch existing gh-pages branch
-        git fetch origin gh-pages:gh-pages 2>/dev/null || true
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
 
-        # Create or update gh-pages branch
-        if git rev-parse --verify gh-pages >/dev/null 2>&1; then
-          git checkout gh-pages
-          git rm -rf .
-        else
-          git checkout --orphan gh-pages
-        fi
-
-        # Copy build files
+    - name: Deploy to gh-pages
+      run: |
+        git checkout --orphan gh-pages
+        git rm -rf .
         cp -r web/dist/* .
-
-        # Commit and push
         git add .
-        if ! git diff --cached --quiet; then
-          git commit -m "Deploy: Update site [skip ci]"
-          git push origin gh-pages
-        else
-          echo "No changes to deploy"
-        fi
+        git commit -m "Deploy: Update site [skip ci]"
+        git push -f origin gh-pages
