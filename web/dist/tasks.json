@@ -1,0 +1,157 @@
+{
+  "tasks": [
+    {
+      "id": "task-mmmq8g8z",
+      "title": "Build landing page for website",
+      "description": "",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-15",
+      "created_at": "2026-03-12 00:25",
+      "completed_at": "",
+      "tags": [
+        "website"
+      ],
+      "estimate_hours": "",
+      "actual_hours": ""
+    },
+    {
+      "id": "task-auraflow-001",
+      "title": "Explore AuraFlow — Astrological Decision Timing App",
+      "description": "Real-time astrological transits + meditation guidance for optimal decision-making",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 08:00",
+      "completed_at": "",
+      "tags": [
+        "app-idea",
+        "frequency-raising",
+        "astrology",
+        "freemium"
+      ],
+      "estimate_hours": "",
+      "actual_hours": "",
+      "extended_description": "**Market Gap**: Synchronized decision-timing + meditation app based on natal chart (NOT FOUND in market as of 2026-03-09)\n\n**Core Purpose**:\n- Pulls live astrological data + user's natal chart\n- Shows current planetary transits in real-time\n- Suggests optimal times for decisions, communications, creative work\n- Push notifications for \"power windows\" (Mercury conjunctions, Venus ingress, Moon void)\n\n**7-Day Revenue Model**:\n- Freemium: Free daily mantra + 1 decision query\n- Premium: $9.99/mo for unlimited transits, 30-min guidance, weekly report\n- B2B: Sell to coaching communities, real estate teams ($500/mo)\n- Target: 50 premium signups = $500 MRR\n\n**Tech Stack**: React Native, Astro API, meditation content library"
+    },
+    {
+      "id": "task-neuralnest-001",
+      "title": "Explore NeuralNest — AI Relationship Architecture CRM",
+      "description": "Intelligent CRM + relationship mapping + conversation intelligence for warm networks",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 08:00",
+      "completed_at": "",
+      "tags": [
+        "app-idea",
+        "network-leverage",
+        "ai-crm",
+        "freemium"
+      ],
+      "estimate_hours": "",
+      "actual_hours": "",
+      "extended_description": "**Market Gap**: Relationship-health + conversation-intelligence + re-engagement timing app (NOT FOUND in market as of 2026-03-09)\n\n**Core Purpose**:\n- Users input relationships (name, context, last interaction, shared interests)\n- AI suggests optimal re-engagement timing + personalized conversation starters\n- Analyzes conversation transcripts to identify deeper connections\n- Dashboard shows \"relationship health score\" (frequency, depth, reciprocal value)\n- Generates 1-pager brief before important calls/meetings\n\n**Why This Matters**:\n- High-net-worth individuals have 500+ relationships but only nurture 20-30\n- AI can identify dormant relationships worth reactivating\n- Conversation intelligence = trust-building without feeling transactional\n\n**7-Day Revenue Model**:\n- Freemium: 50 contacts free, basic health score\n- Premium: $19.99/mo for unlimited contacts, AI starters, re-engagement nudges\n- Enterprise: $999/mo for teams (4+ users), analytics, reporting\n- Target: 100 premium signups = $2k MRR\n\n**Tech Stack**: Python + React, GPT-4 integration, calendar/email integration\n\n--\n\n\n\nTasks waiting to be started, sorted by priority."
+    },
+    {
+      "id": "task-vaultmind-001",
+      "title": "Explore VaultMind — Private AI for Regulated Professionals",
+      "description": "On-premise HIPAA/SOC2 compliant AI for healthcare, legal, and financial professionals",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 12:00",
+      "completed_at": "",
+      "tags": [
+        "app-idea",
+        "enterprise",
+        "ai-privacy",
+        "hipaa-compliant"
+      ],
+      "estimate_hours": "",
+      "actual_hours": "",
+      "extended_description": "**Market Gap**: Affordable, self-hosted AI for regulated professionals (HIPAA/SOC2 compliant) under $5k/year. Not found in market as of 2026-03-10.\n\n**Core Purpose**:\n- Deploy as self-hosted or enterprise private cloud\n- Fine-tune LLM on proprietary data (case law, patient records, financial histories)\n- Analyzes patterns, surfaces insights, generates recommendations—all behind firewall\n- Zero external API calls; all computation on-premise\n- Audit trail for regulatory compliance (HIPAA, GLBA, SEC Rule 17a-4)\n\n**Why This Matters**:\n- 46% of healthcare organizations use AI but 60%+ worry about data breaches\n- Financial advisors can't use ChatGPT for client portfolios (compliance risk)\n- Lawyers can't use public AI for case files (privilege waiver risk)\n\n**7-Day Revenue Model**:\n- Free: 5 documents, basic analysis\n- Pro: $49.99/mo for 500 documents, advanced analytics, compliance reporting\n- Enterprise: $999/mo for unlimited, dedicated support, custom compliance config\n- Target: 20 pro signups = $1k MRR\n\n**Tech Stack**: Python, Llama 2 (open-source LLM), Docker (self-hosted deployment), FastAPI backend"
+    },
+    {
+      "id": "task-taskproxy-001",
+      "title": "Build TaskProxy — AI that Actually Executes",
+      "description": "AI-powered task execution engine that autonomously completes actions (emails, scheduling, tracking)",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "jd",
+      "due_date": "",
+      "created_at": "2026-03-10 12:00",
+      "completed_at": "",
+      "tags": [
+        "coding-idea",
+        "automation",
+        "ai-execution",
+        "revenue"
+      ],
+      "estimate_hours": "35",
+      "actual_hours": "",
+      "extended_description": "**Why This Works**:\n- Existing tools (Zapier, Make) require manual workflow building\n- Calendar apps (Fantastical, Dex) schedule but don't execute\n- AI Concierges (ChatGPT) talk but don't do\n- **No tool actually gets things done on your behalf**\n\n**MVP Deliverable** (by Day 5):\n1. User inputs task: \"Schedule 3 outreach emails, track responses in Airtable, remind me Friday\"\n2. AI autonomously: Drafts emails (Claude), schedules via Gmail, sets up tracking, creates Slack reminders\n3. Dashboard shows task execution status + outcomes\n4. AI learns task patterns and executes recurring tasks without prompting\n\n**7-Day Revenue Model**:\n- Free: 5 tasks/month, basic execution (emails only)\n- Pro: $29.99/mo for 100 tasks/month, multi-tool integration (Slack, Airtable, Stripe), learning AI\n- Premium: $99.99/mo for unlimited tasks, priority execution, 1-on-1 AI tuning\n- Target Users: Real estate teams, entrepreneurs, coaches, high-net-worth professionals\n- Day 1-2 Revenue: 30 pro users @ $29.99 = $900 MRR\n- Day 7 Potential: 200 users = $6k MRR\n\n**Tech Stack**: Python + FastAPI, Zapier/Make API, Claude API, Airtable API"
+    },
+    {
+      "id": "task-001",
+      "title": "Build DealFlow App MVP (Coding Idea #1)",
+      "description": "React Native app for real estate pipeline intelligence + close probability prediction",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-15",
+      "created_at": "2026-03-10 08:30",
+      "completed_at": "",
+      "tags": [
+        "coding",
+        "revenue",
+        "app-idea"
+      ],
+      "estimate_hours": "40",
+      "actual_hours": "",
+      "extended_description": "---\n\nReal estate agents spend 2-4 hours per day managing loose prospect pipelines. DealFlow solves this with AI-powered prediction of close likelihood based on behavioral patterns.\n\n**Acceptance Criteria**:\n- [ ] React Native project scaffold with Expo\n- [ ] Lead intake form (5 core fields: name, location, timeline, budget, property type)\n- [ ] Scoring algorithm (analyzes 20+ variables: response speed, objection patterns, follow-up engagement)\n- [ ] Color-coded output (🟢 Call immediately | 🟡 Follow-up | 🔴 Long-nurture)\n- [ ] Live probability % for each prospect\n- [ ] Stripe integration for $29.99/month subscription\n- [ ] TestFlight deployment (iOS beta)\n\n**Resources**:\n- [App Ideas Database](../../05%20-%20Memory/app-and-coding-ideas.md)\n- Revenue Model: $450 MRR by day 7 with 15 agents"
+    },
+    {
+      "id": "task-002",
+      "title": "Build LeadScorer CLI Tool (Coding Idea #2)",
+      "description": "Predictive lead qualification engine that auto-scores incoming leads",
+      "status": "backlog",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-17",
+      "created_at": "2026-03-10 08:35",
+      "completed_at": "",
+      "tags": [
+        "coding",
+        "revenue",
+        "lead-gen"
+      ],
+      "estimate_hours": "45",
+      "actual_hours": "",
+      "extended_description": "Lead scoring system that filters out tire-kickers and surfaces only high-intent prospects. Saves JD 3-4 hours daily on low-quality leads.\n\n**Acceptance Criteria**:\n- [ ] FastAPI backend for scoring logic\n- [ ] Next.js frontend for lead intake form\n- [ ] 20+ scoring variables implemented\n- [ ] Color-coded lead queue (green/yellow/red)\n- [ ] Weekly accuracy report (prediction vs. actual closes)\n- [ ] Stripe integration for $49.99/month\n- [ ] Database: PostgreSQL with Django ORM\n\n**Revenue Model**: 10 agents @ $49.99/mo = $500 MRR by week 2"
+    },
+    {
+      "id": "task-complete-001",
+      "title": "Build Daily Routine System (8am/10pm Greetings)",
+      "description": "Astrological mantra + app ideas + coding ideas (morning), spiritual lessons (evening)",
+      "status": "done",
+      "priority": "high",
+      "assigned_to": "one",
+      "due_date": "2026-03-09",
+      "created_at": "2026-03-08 22:00",
+      "completed_at": "2026-03-09 18:00",
+      "tags": [
+        "system",
+        "wellness",
+        "spiritual"
+      ],
+      "estimate_hours": "20",
+      "actual_hours": "18",
+      "extended_description": "Completed daily greeting system with personalized astrological mantras, verified app ideas, revenue-potential coding projects, and rotating spiritual lessons (Kabbalah, Van Praagh, Ramtha).\n\n**Deliverables**:\n- ✅ 5 core documentation files (50KB total)\n- ✅ Daily routine knowledge base\n- ✅ App & coding ideas database\n- ✅ Morning + evening greeting templates\n- ✅ System launch summary"
+    }
+  ]
+}
