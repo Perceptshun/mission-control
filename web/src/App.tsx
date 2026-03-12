@@ -57,9 +57,11 @@ const App: React.FC = () => {
         try {
           await updateTaskStatus(taskId, newStatus);
         } catch (err) {
-          console.error("Failed to update task status:", err);
-          // Revert on failure
-          fetchTasks();
+          console.error(
+            "Note: Drag succeeded locally but failed to sync to GitHub:",
+            err
+          );
+          // Do NOT revert - user has successfully moved task locally
         }
       }
 
@@ -80,14 +82,17 @@ const App: React.FC = () => {
     // Always remove from local state
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
 
-    // Sync to GitHub only if token is set
+    // Try to sync to GitHub only if token is set (non-blocking)
     if (getToken()) {
       try {
         await deleteTaskGH(taskId);
       } catch (err) {
-        console.error("Failed to delete task from GitHub:", err);
-        // Revert on failure
-        fetchTasks();
+        console.error(
+          "Note: Delete succeeded locally but failed to sync to GitHub:",
+          err
+        );
+        // Do NOT revert - user has successfully deleted locally
+        // Token may be invalid, but deletion is complete
       }
     }
   }, []);
